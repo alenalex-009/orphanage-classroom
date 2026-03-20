@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Class {
+  id        String     @id @default(cuid())
+  name      String
+  students  Student[]
+  sessions  Session[]
+  moodLogs  MoodLog[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Student {
+  id            String          @id @default(cuid())
+  name          String
+  age           Int
+  classId       String
+  class         Class           @relation(fields: [classId], references: [id], onDelete: Cascade)
+  attendance    Attendance[]
+  participation Participation[]
+  reward        Reward?
+  achievements  Achievement[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([classId])
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date      DateTime @default(now()) @db.Date
+  status    String   // "present" | "absent"
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, date])
+  @@index([studentId])
+  @@index([date])
+}
+
+model Session {
+  id            String          @id @default(cuid())
+  date          DateTime        @default(now()) @db.Date
+  classId       String
+  class         Class           @relation(fields: [classId], references: [id], onDelete: Cascade)
+  topic         String
+  completed     Boolean         @default(false)
+  participation Participation[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([classId])
+  @@index([date])
+}
+
+model Participation {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  score     Int      // 1-10
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, sessionId])
+  @@index([studentId])
+  @@index([sessionId])
+}
+
+model MoodLog {
+  id           String   @id @default(cuid())
+  date         DateTime @default(now()) @db.Date
+  classId      String
+  class        Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  happyCount   Int      @default(0)
+  neutralCount Int      @default(0)
+  sadCount     Int      @default(0)
+  angryCount   Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  @@unique([classId, date])
+  @@index([classId])
+}
+
+// ─── GAMIFICATION LAYER (isolated) ────────────────────────────────────────────
+
+model Reward {
+  id        String   @id @default(cuid())
+  studentId String   @unique
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  xp        Int      @default(0)
+  level     Int      @default(0)
+  streak    Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model Achievement {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  type      String   // "consistent_learner" | "active_student" | "first_session" | "perfect_week"
+  label     String
+  icon      String
+  date      DateTime @default(now())
+
+  @@unique([studentId, type])
+  @@index([studentId])
+}
