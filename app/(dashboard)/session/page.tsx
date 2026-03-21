@@ -35,10 +35,8 @@ export default async function SessionPage() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Create session form */}
         <SessionPanel classes={classes} />
 
-        {/* Today's sessions */}
         <div className="classroom-card">
           <h2 className="font-bold text-foreground mb-4">Today&apos;s Sessions</h2>
           {todaySessions.length === 0 ? (
@@ -47,10 +45,10 @@ export default async function SessionPage() {
             </p>
           ) : (
             <div className="space-y-3">
-              {todaySessions.map((session: typeof todaySessions[0]) => (
+              {todaySessions.map((session:any) => (
                 <Link
                   key={session.id}
-                  href={`/session/${session.id}`}
+                  href={`/session/${session.id}${!(session.completed)?"/live":""}`}
                   className="block p-4 rounded-xl border border-border bg-secondary hover:bg-muted transition-colors"
                 >
                   <div className="flex items-start justify-between">
@@ -59,18 +57,15 @@ export default async function SessionPage() {
                         {session.topic}
                       </p>
                       <p className="text-xs text-muted-foreground mt-1">
-                        {session.class.name} ·{" "}
-                        {session.participation.length} students recorded
+                        {session.class.name} · {session.participation.length} students recorded
                       </p>
                     </div>
-                    <span
-                      className={cn(
-                        "text-xs font-bold px-2.5 py-1 rounded-full shrink-0",
-                        session.completed
-                          ? "bg-emerald-100 text-emerald-700"
-                          : "bg-amber-100 text-amber-700"
-                      )}
-                    >
+                    <span className={cn(
+                      "text-xs font-bold px-2.5 py-1 rounded-full shrink-0",
+                      session.completed
+                        ? "bg-emerald-100 text-emerald-700"
+                        : "bg-amber-100 text-amber-700"
+                    )}>
                       {session.completed ? "✓ Done" : "● Active"}
                     </span>
                   </div>

@@ -11,11 +11,13 @@ import { cn } from "@/lib/utils";
 import { User, Calendar, BookOpen, Award, TrendingUp } from "lucide-react";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function StudentProfilePage({ params }: Props) {
-  const student = await getStudentProfile(params.id);
+  const { id } = await params;
+
+  const student = await getStudentProfile(id);
   if (!student) notFound();
 
   const xpInfo = student.reward
