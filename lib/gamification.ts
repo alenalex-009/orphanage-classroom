@@ -176,16 +176,21 @@ export async function triggerSelectedAnswer(
   teamId?: string
 ): Promise<{ xpPerStudent: number; hadStreakBonus: boolean }> {
   try {
-    let totalXPPerStudent = XP.SELECTED_ANSWER_BASE;
     let hadStreakBonus = false;
 
+    // Check if any student has a streak bonus
     for (const studentId of studentIds) {
       const streak = await getStudentStreak(studentId);
-      const bonus = streak >= 3 ? XP.SELECTED_ANSWER_STREAK_BONUS : 0;
-      if (bonus > 0) hadStreakBonus = true;
-      const xp = XP.SELECTED_ANSWER_BASE + bonus;
-      totalXPPerStudent = xp;
-      await addXP(studentId, xp);
+      if (streak >= 3) {
+        hadStreakBonus = true;
+        break;
+      }
+    }
+
+    const xpPerStudent = XP.SELECTED_ANSWER_BASE + (hadStreakBonus ? XP.SELECTED_ANSWER_STREAK_BONUS : 0);
+
+    for (const studentId of studentIds) {
+      await addXP(studentId, xpPerStudent);
 
       // Check question master achievement
       const eventCount = await prisma.activityEvent.count({
@@ -200,10 +205,10 @@ export async function triggerSelectedAnswer(
     }
 
     if (teamId) {
-      await addTeamXP(teamId, totalXPPerStudent * studentIds.length);
+      await addTeamXP(teamId, xpPerStudent * studentIds.length);
     }
 
-    return { xpPerStudent: totalXPPerStudent, hadStreakBonus };
+    return { xpPerStudent, hadStreakBonus };
   } catch (error) {
     console.error("[Gamification] triggerSelectedAnswer failed:", error);
     return { xpPerStudent: 0, hadStreakBonus: false };

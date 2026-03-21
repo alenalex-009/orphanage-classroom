@@ -34,7 +34,7 @@ export async function completeSession(
     });
 
     // Fire gamification for all participants
-    const studentIds = session.participation.map((p) => p.studentId);
+    const studentIds = session.participation.map((p: { studentId: string }) => p.studentId);
     for (const id of studentIds) {
       await triggerSessionCompleted(id);
     }
