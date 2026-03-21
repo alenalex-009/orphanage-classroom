@@ -3,11 +3,13 @@ import { getLiveSessionData } from "@/actions/gamification";
 import { LiveSessionRoom } from "@/components/live-session-room";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function LiveSessionPage({ params }: Props) {
-  const session = await getLiveSessionData(params.id);
+  const { id } = await params;
+
+  const session = await getLiveSessionData(id);
   if (!session) notFound();
 
   return (

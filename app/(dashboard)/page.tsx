@@ -183,7 +183,7 @@ export default async function DashboardPage() {
               {data.todaySessions.map((s:any) => (
                 <Link
                   key={s.id}
-                  href={`/session/${s.id}`}
+                  href={`/session/${s.id}${!(s.completed)?"/live":""}`}
                   className="flex items-center justify-between p-3 rounded-xl bg-secondary hover:bg-muted transition-colors"
                 >
                   <div>

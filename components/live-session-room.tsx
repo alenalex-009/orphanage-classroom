@@ -14,6 +14,7 @@ import { completeSession } from "@/actions/session";
 import {
   Users, Zap, Theater, Trophy, ChevronRight,
   CheckCircle2, Star, Loader2, ArrowLeft, Hash,
+  Gamepad2,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -230,6 +231,20 @@ export function LiveSessionRoom({ session, students, teams: initialTeams, initia
             )}
           </div>
         )}
+
+        {!session.completed && (
+        <Link href={`/session/${session.id}/game`}
+          className="flex items-center gap-4 p-5 rounded-2xl bg-gray-900 border border-gray-700 hover:bg-gray-800 transition-all group">
+          <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center shrink-0">
+            <Gamepad2 className="w-6 h-6 text-teal-400" />
+          </div>
+          <div className="flex-1">
+            <p className="font-extrabold text-white text-base">Launch Game Mode 🎮</p>
+            <p className="text-gray-400 text-sm mt-0.5">Full screen · Live questions · XP · Scoreboard</p>
+          </div>
+          <span className="text-teal-400 font-bold text-lg group-hover:translate-x-1 transition-transform">→</span>
+        </Link>
+      )}
 
         {/* ACTIVITY CONTROLS */}
         <div className="classroom-card">

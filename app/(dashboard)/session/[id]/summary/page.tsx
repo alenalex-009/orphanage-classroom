@@ -5,8 +5,9 @@ import Link from "next/link";
 import { Trophy, Star, Users, Zap, ArrowLeft, Home } from "lucide-react";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
+
 
 const TEAM_COLORS: Record<string, { bg: string; border: string; text: string }> = {
   teal:   { bg: "bg-teal-50",   border: "border-teal-300",  text: "text-teal-800"  },
@@ -16,7 +17,9 @@ const TEAM_COLORS: Record<string, { bg: string; border: string; text: string }> 
 };
 
 export default async function SessionSummaryPage({ params }: Props) {
-  const data = await getSessionSummary(params.id);
+  const { id } = await params;
+
+  const data = await getSessionSummary(id);
   if (!data) notFound();
 
   const { session, topStudents, totalEvents } = data;
