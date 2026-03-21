@@ -16,12 +16,12 @@ async function getAllStudentsWithStats() {
     orderBy: [{ class: { name: "asc" } }, { name: "asc" }],
   });
 
-  return students.map((s) => {
-    const present = s.attendance.filter((a) => a.status === "present").length;
+  return students.map((s:any) => {
+    const present = s.attendance.filter((a:any) => a.status === "present").length;
     const attendancePct = calculateAttendancePercentage(present, s.attendance.length);
     const avgParticipation =
       s.participation.length > 0
-        ? Math.round(s.participation.reduce((sum, p) => sum + p.score, 0) / s.participation.length)
+        ? Math.round(s.participation.reduce((sum:any, p:any) => sum + p.score, 0) / s.participation.length)
         : 0;
     return { ...s, attendancePct, avgParticipation };
   });
@@ -31,16 +31,15 @@ export default async function StudentsPage() {
   const students = await getAllStudentsWithStats();
 
   // Group by class
-  const byClass = students.reduce<Record<string, typeof students>>(
-    (acc, s) => {
-      const key = s.class.name;
-      if (!acc[key]) acc[key] = [];
-      acc[key].push(s);
-      return acc;
-    },
-    {}
-  );
-
+const byClass = students.reduce(
+  (acc: Record<string, typeof students>, s:any) => {
+    const key = s.class.name;
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(s);
+    return acc;
+  },
+  {}
+);
   return (
     <div className="page-container">
       <div className="flex items-center justify-between">
@@ -69,11 +68,12 @@ export default async function StudentsPage() {
           </Link>
         </div>
       ) : (
-        Object.entries(byClass).map(([className, classStudents]) => (
+        Object.entries(byClass).map(
+  ([className, classStudents]: [string, typeof students]) => (
           <div key={className} className="classroom-card">
             <h2 className="font-bold text-foreground mb-4">{className}</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {classStudents.map((student) => (
+              {classStudents.map((student:any) => (
                 <Link
                   key={student.id}
                   href={`/students/${student.id}`}

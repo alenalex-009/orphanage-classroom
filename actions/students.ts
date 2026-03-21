@@ -68,14 +68,14 @@ export async function getStudentProfile(studentId: string) {
   if (!student) return null;
 
   const totalAttendance = student.attendance.length;
-  const presentCount = student.attendance.filter((a) => a.status === "present").length;
+  const presentCount = student.attendance.filter((a: { status: string }) => a.status === "present").length;
   const attendancePct =
     totalAttendance > 0 ? Math.round((presentCount / totalAttendance) * 100) : 0;
 
   const avgParticipation =
     student.participation.length > 0
       ? Math.round(
-          student.participation.reduce((sum, p) => sum + p.score, 0) /
+          student.participation.reduce((sum: number, p: { score: number }) => sum + p.score, 0) /
             student.participation.length
         )
       : 0;

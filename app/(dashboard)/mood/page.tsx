@@ -41,8 +41,8 @@ export default async function MoodPage() {
         </div>
       ) : (
         <div className="space-y-6">
-          {classes.map((cls) => {
-            const existingMood = todayMoods.find((m) => m.classId === cls.id);
+          {classes.map((cls:any) => {
+            const existingMood = todayMoods.find((m:any) => m.classId === cls.id);
             return (
               <MoodPicker
                 key={cls.id}

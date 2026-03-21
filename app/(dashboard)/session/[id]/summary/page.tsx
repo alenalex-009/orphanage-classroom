@@ -24,7 +24,7 @@ export default async function SessionSummaryPage({ params }: Props) {
   const winningTeam = isTeamMode && session.teams.length > 0 ? session.teams[0] : null;
 
   const totalXPAwarded = session.activityEvents.reduce(
-    (sum, e) => sum + e.xpAwarded + e.bonusXP, 0
+    (sum:any, e:any) => sum + e.xpAwarded + e.bonusXP, 0
   );
 
   return (
@@ -73,7 +73,7 @@ export default async function SessionSummaryPage({ params }: Props) {
           </h2>
           <p className="text-amber-600 font-bold text-lg">{winningTeam.xp} XP</p>
           <div className="flex flex-wrap justify-center gap-2 mt-3">
-            {winningTeam.members.map((m) => (
+            {winningTeam.members.map((m:any) => (
               <span key={m.id} className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold">
                 {m.student.name}
               </span>
@@ -83,7 +83,7 @@ export default async function SessionSummaryPage({ params }: Props) {
           {/* All teams */}
           {session.teams.length > 1 && (
             <div className="grid grid-cols-2 gap-3 mt-5">
-              {session.teams.map((team, idx) => {
+              {session.teams.map((team:any, idx:any) => {
                 const colors = TEAM_COLORS[team.color] ?? TEAM_COLORS.teal;
                 return (
                   <div key={team.id} className={cn("p-3 rounded-xl border-2 text-left", colors.bg, colors.border)}>
@@ -111,7 +111,7 @@ export default async function SessionSummaryPage({ params }: Props) {
           {topStudents.length === 0 ? (
             <p className="text-muted-foreground text-sm text-center py-4">No XP awarded this session.</p>
           ) : (
-            topStudents.map((student, idx) => (
+            topStudents.map((student:any, idx:any) => (
               <Link key={student.id} href={`/students/${student.id}`}
                 className="flex items-center gap-3 p-3 rounded-xl bg-secondary hover:bg-muted transition-colors">
                 <span className="text-xl w-8 text-center">
@@ -136,12 +136,12 @@ export default async function SessionSummaryPage({ params }: Props) {
       {/* New achievements earned */}
       <div className="classroom-card">
         <h2 className="font-bold text-foreground mb-4">🏆 Achievements Earned</h2>
-        {session.class.students.flatMap((s) => s.achievements).length === 0 ? (
+        {session.class.students.flatMap((s:any) => s.achievements).length === 0 ? (
           <p className="text-muted-foreground text-sm text-center py-4">No new achievements this session.</p>
         ) : (
           <div className="flex flex-wrap gap-2">
-            {session.class.students.map((s) =>
-              s.achievements.map((a) => (
+            {session.class.students.map((s:any) =>
+              s.achievements.map((a:any) => (
                 <div key={a.id} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-50 border border-amber-100">
                   <span className="text-lg">{a.icon}</span>
                   <div>

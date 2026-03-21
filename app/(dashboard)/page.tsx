@@ -31,7 +31,7 @@ async function getDashboardData() {
     ]);
 
   const presentToday = todayAttendance.filter(
-    (a) => a.status === "present"
+    (a:any) => a.status === "present"
   ).length;
   const markedToday = todayAttendance.length;
 
@@ -108,7 +108,7 @@ export default async function DashboardPage() {
           value={data.todaySessions.length}
           icon={<BookOpen className="w-5 h-5 text-amber-600" />}
           color="amber"
-          sub={`${data.todaySessions.filter((s) => s.completed).length} completed`}
+          sub={`${data.todaySessions.filter((s:any) => s.completed).length} completed`}
         />
         <StatCard
           label="Class Mood"
@@ -180,7 +180,7 @@ export default async function DashboardPage() {
             </p>
           ) : (
             <div className="space-y-2">
-              {data.todaySessions.map((s) => (
+              {data.todaySessions.map((s:any) => (
                 <Link
                   key={s.id}
                   href={`/session/${s.id}`}
@@ -229,7 +229,7 @@ export default async function DashboardPage() {
             </p>
           ) : (
             <div className="space-y-2">
-              {data.recentAchievements.map((a) => (
+              {data.recentAchievements.map((a:any) => (
                 <div
                   key={a.id}
                   className="flex items-center gap-3 p-3 rounded-xl bg-secondary"
@@ -255,7 +255,7 @@ export default async function DashboardPage() {
           Classes Overview
         </h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-          {data.classes.map((c) => (
+          {data.classes.map((c:any) => (
             <div
               key={c.id}
               className="p-4 rounded-xl bg-teal-50 border border-teal-100"

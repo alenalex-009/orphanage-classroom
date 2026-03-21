@@ -27,7 +27,7 @@ async function getAttendancePageData() {
 export default async function AttendancePage() {
   const { classes, markedMap, today } = await getAttendancePageData();
 
-  const totalStudents = classes.reduce((sum, c) => sum + c.students.length, 0);
+  const totalStudents = classes.reduce((sum: number, c: { students: unknown[] }) => sum + c.students.length, 0);
   const markedCount = Object.keys(markedMap).length;
   const presentCount = Object.values(markedMap).filter(
     (s) => s === "present"

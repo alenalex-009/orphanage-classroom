@@ -72,7 +72,7 @@ export default async function StudentProfilePage({ params }: Props) {
             {student.attendancePct}%
           </p>
           <p className="text-xs text-muted-foreground">
-            {student.attendance.filter(a => a.status === "present").length} / {student.attendance.length} days
+            {student.attendance.filter((a:any) => a.status === "present").length} / {student.attendance.length} days
           </p>
         </div>
 
@@ -141,7 +141,7 @@ export default async function StudentProfilePage({ params }: Props) {
             Achievements
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {student.achievements.map((a) => (
+            {student.achievements.map((a:any) => (
               <div
                 key={a.id}
                 className="flex items-center gap-3 p-3 rounded-xl bg-amber-50 border border-amber-100"
@@ -166,7 +166,7 @@ export default async function StudentProfilePage({ params }: Props) {
           Recent Attendance (last 30 days)
         </h2>
         <div className="flex flex-wrap gap-2">
-          {student.attendance.slice(0, 30).map((a) => (
+          {student.attendance.slice(0, 30).map((a:any) => (
             <div
               key={a.id}
               className={cn(
@@ -195,7 +195,7 @@ export default async function StudentProfilePage({ params }: Props) {
             Recent Sessions
           </h2>
           <div className="space-y-2">
-            {student.participation.map((p) => (
+            {student.participation.map((p:any) => (
               <div
                 key={p.id}
                 className="flex items-center justify-between p-3 rounded-xl bg-secondary"
