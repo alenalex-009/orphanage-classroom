@@ -75,3 +75,5 @@ export function AvatarDisplay({ xp, size = "md" }: { xp: number; size?: "sm" | "
     </div>
   );
 }
+
+
