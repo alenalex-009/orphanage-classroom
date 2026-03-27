@@ -18,18 +18,20 @@ model Class {
 }
 
 model Student {
-  id            String          @id @default(cuid())
-  name          String
-  age           Int
-  classId       String
-  class         Class           @relation(fields: [classId], references: [id], onDelete: Cascade)
-  attendance    Attendance[]
-  participation Participation[]
-  teamMembers   TeamMember[]
-  reward        Reward?
-  achievements  Achievement[]
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  id               String            @id @default(cuid())
+  name             String
+  age              Int
+  classId          String
+  class            Class             @relation(fields: [classId], references: [id], onDelete: Cascade)
+  attendance       Attendance[]
+  participation    Participation[]
+  teamMembers      TeamMember[]
+  reward           Reward?
+  achievements     Achievement[]
+  storyProgress    StoryProgress[]
+  dailyChallenges  DailyChallenge[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 
   @@index([classId])
 }
@@ -39,7 +41,7 @@ model Attendance {
   studentId String
   student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   date      DateTime @default(now()) @db.Date
-  status    String   // "present" | "absent"
+  status    String
   createdAt DateTime @default(now())
 
   @@unique([studentId, date])
@@ -48,20 +50,19 @@ model Attendance {
 }
 
 model Session {
-  id             String           @id @default(cuid())
-  date           DateTime         @default(now()) @db.Date
+  id             String          @id @default(cuid())
+  date           DateTime        @default(now()) @db.Date
   classId        String
-  class          Class            @relation(fields: [classId], references: [id], onDelete: Cascade)
+  class          Class           @relation(fields: [classId], references: [id], onDelete: Cascade)
   topic          String
-  completed      Boolean          @default(false)
-  // ─── Gamification fields ───
-  mode           String           @default("class") // "class" | "team"
-  teamSize       Int              @default(2)        // students per team
+  completed      Boolean         @default(false)
+  mode           String          @default("class")
+  teamSize       Int             @default(2)
   participation  Participation[]
   teams          Team[]
   activityEvents ActivityEvent[]
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 
   @@index([classId])
   @@index([date])
@@ -73,7 +74,7 @@ model Participation {
   student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   sessionId String
   session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  score     Int      // 1-10
+  score     Int
   createdAt DateTime @default(now())
 
   @@unique([studentId, sessionId])
@@ -96,15 +97,12 @@ model MoodLog {
   @@index([classId])
 }
 
-// ─── GAMIFICATION LAYER (isolated) ────────────────────────────────────────────
-
-// Teams — only exist within a session in team mode
 model Team {
   id        String       @id @default(cuid())
   sessionId String
   session   Session      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  name      String       // "Team A", "Team B", etc.
-  color     String       // "teal" | "amber" | "purple" | "coral"
+  name      String
+  color     String
   xp        Int          @default(0)
   members   TeamMember[]
   createdAt DateTime     @default(now())
@@ -124,16 +122,15 @@ model TeamMember {
   @@index([studentId])
 }
 
-// ActivityEvent — logs every gamification action during a live session
 model ActivityEvent {
   id         String   @id @default(cuid())
   sessionId  String
   session    Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  type       String   // "whole_class" | "selected_pin" | "role_play"
-  studentIds String[] // array of student IDs who earned XP
+  type       String
+  studentIds String[]
   xpAwarded  Int      @default(0)
   bonusXP    Int      @default(0)
-  metadata   Json?    // e.g. { streakBonus: true, creativity: 8, understanding: 9 }
+  metadata   Json?
   createdAt  DateTime @default(now())
 
   @@index([sessionId])
@@ -153,11 +150,43 @@ model Achievement {
   id        String   @id @default(cuid())
   studentId String
   student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  type      String   // "consistent_learner" | "active_student" | "first_session" | "perfect_week"
+  type      String
   label     String
   icon      String
   date      DateTime @default(now())
 
   @@unique([studentId, type])
   @@index([studentId])
+}
+
+// ─── NEW: Story progress tracking ─────────────────────────────────────────────
+model StoryProgress {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  storyId     String
+  pagesRead   Int      @default(0)
+  completed   Boolean  @default(false)
+  xpEarned    Int      @default(0)
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+
+  @@unique([studentId, storyId])
+  @@index([studentId])
+}
+
+// ─── NEW: Daily challenge tracking ────────────────────────────────────────────
+model DailyChallenge {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date        DateTime @db.Date
+  topic       String
+  completed   Boolean  @default(false)
+  xpEarned    Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@unique([studentId, date])
+  @@index([studentId])
+  @@index([date])
 }
