@@ -115,7 +115,7 @@ export default async function LeaderboardPage() {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {r.streak > 0 && <span className="text-xs font-bold text-orange-500">🔥{r.streak}</span>}
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black text-white bg-gradient-to-r ${avatar.gradient}`}>
+                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black text-yellow-400 bg-gradient-to-r ${avatar.gradient}`}>
                     {avatar.emoji} Lv.{level}
                   </span>
                   <span className="text-sm font-black text-violet-700 w-16 text-right">{r.xp} XP</span>

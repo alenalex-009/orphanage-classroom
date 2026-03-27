@@ -162,7 +162,7 @@ export default async function DashboardPage() {
                     <XPBar xp={r.xp} showLabel={false} size="sm" animated={false} />
                   </div>
                   <div className="shrink-0 text-right">
-                    <span className={`text-xs font-black px-2 py-0.5 rounded-full text-white bg-gradient-to-r ${avatar.gradient}`}>
+                    <span className={`text-xs font-black px-2 py-0.5 rounded-full text-purple-600 bg-gradient-to-r ${avatar.gradient}`}>
                       {avatar.emoji} {r.xp}
                     </span>
                   </div>
