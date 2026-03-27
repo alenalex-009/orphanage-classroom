@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 25% 97%;
+    --foreground: 224 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 30% 12%;
+    --primary: 252 83% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 224 20% 25%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 48%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 89%;
+    --input: 220 15% 89%;
+    --ring: 252 83% 57%;
+    --radius: 0.875rem;
+    --font-nunito: "Nunito", sans-serif;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; font-family: var(--font-nunito), sans-serif; }
+  h1,h2,h3,h4 { @apply font-bold; }
+}
+
+@layer components {
+  /* ── Layout ─────────────────────────────────────────────────── */
+  .page-container { @apply max-w-5xl mx-auto px-5 py-6 space-y-6; }
+
+  /* ── Cards ──────────────────────────────────────────────────── */
+  .classroom-card {
+    @apply bg-white rounded-2xl border border-border shadow-card p-6
+           transition-shadow duration-200 hover:shadow-card-hover;
+  }
+  .stat-card {
+    @apply bg-white rounded-2xl border border-border shadow-card p-5
+           flex flex-col gap-2 transition-all duration-200 hover:shadow-card-hover;
+  }
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md rounded-2xl border border-white/60 shadow-card;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           bg-gradient-to-r from-violet-600 to-indigo-600 text-white
+           font-bold rounded-xl text-sm shadow-glow-violet
+           hover:opacity-90 active:scale-95 transition-all duration-150;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           bg-white border-2 border-border text-foreground
+           font-bold rounded-xl text-sm
+           hover:border-violet-300 hover:bg-violet-50 active:scale-95 transition-all duration-150;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+           text-muted-foreground font-semibold rounded-xl text-sm
+           hover:bg-secondary hover:text-foreground active:scale-95 transition-all duration-150;
+  }
+  .action-btn { @apply min-h-[52px] rounded-xl font-bold text-sm transition-all active:scale-95; }
+
+  /* ── Badges ──────────────────────────────────────────────────── */
+  .present-badge { @apply bg-emerald-100 text-emerald-700 border border-emerald-200; }
+  .absent-badge  { @apply bg-red-100 text-red-600 border border-red-200; }
+  .level-badge   { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black; }
+  .xp-pill       { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-violet-100 text-violet-700; }
+  .streak-pill   { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-orange-100 text-orange-600; }
+
+  /* ── XP Bar ──────────────────────────────────────────────────── */
+  .xp-bar-track {
+    @apply relative h-3 rounded-full bg-gradient-to-r from-slate-100 to-slate-200 overflow-hidden;
+  }
+  .xp-bar-fill {
+    @apply absolute inset-y-0 left-0 rounded-full bg-gradient-xp shadow-xp
+           transition-all duration-700 ease-out;
+  }
+  .xp-bar-shimmer {
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* ── Achievement ─────────────────────────────────────────────── */
+  .achievement-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
+           text-xs font-bold bg-amber-50 border border-amber-200 text-amber-700;
+  }
+
+  /* ── Game states ─────────────────────────────────────────────── */
+  .team-card {
+    @apply rounded-2xl border-2 p-4 transition-all duration-200;
+  }
+  .combo-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full
+           font-black text-sm bg-gradient-fire text-white animate-bounce-xp;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar { width: 5px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 99px; }
+  .text-gradient-violet { @apply bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent; }
+  .text-gradient-fire   { @apply bg-gradient-fire bg-clip-text text-transparent; }
+  .text-gradient-gold   { @apply bg-gradient-gold bg-clip-text text-transparent; }
+}
+
+/* Page transitions */
+.page-enter { animation: fade-in 0.35s ease-out; }
+
+/* Sidebar active indicator */
+.sidebar-active-indicator {
+  @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-violet-400 rounded-r-full;
+}

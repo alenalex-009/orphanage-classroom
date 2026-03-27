@@ -1,0 +1,73 @@
+import type { Question } from "./types";
+
+// ── SCIENCE ──────────────────────────────────────────────────────────────────
+
+export const SCIENCE_ANIMALS: Question[] = [
+  { id:"sa1", type:"mcq", title:"Which animal is the fastest on land?", options:[{id:"a",text:"Lion",isCorrect:false},{id:"b",text:"Horse",isCorrect:false},{id:"c",text:"Cheetah",isCorrect:true},{id:"d",text:"Elephant",isCorrect:false}], xpReward:10 },
+  { id:"sa2", type:"mcq", title:"What do fish use to breathe underwater?", options:[{id:"a",text:"Lungs",isCorrect:false},{id:"b",text:"Gills",isCorrect:true},{id:"c",text:"Nose",isCorrect:false},{id:"d",text:"Skin",isCorrect:false}], xpReward:10 },
+  { id:"sa3", type:"mcq", title:"Which animal lays eggs?", options:[{id:"a",text:"Dog",isCorrect:false},{id:"b",text:"Cat",isCorrect:false},{id:"c",text:"Hen",isCorrect:true},{id:"d",text:"Cow",isCorrect:false}], xpReward:10 },
+  { id:"sa4", type:"mcq", title:"What do plants need to make food?", options:[{id:"a",text:"Darkness",isCorrect:false},{id:"b",text:"Sunlight, water, and air",isCorrect:true},{id:"c",text:"Only water",isCorrect:false},{id:"d",text:"Soil only",isCorrect:false}], xpReward:10 },
+  { id:"sa5", type:"mcq", title:"Which is a mammal?", options:[{id:"a",text:"Snake",isCorrect:false},{id:"b",text:"Frog",isCorrect:false},{id:"c",text:"Dog",isCorrect:true},{id:"d",text:"Parrot",isCorrect:false}], xpReward:10 },
+  { id:"sa6", type:"mcq", title:"What sound does a lion make?", options:[{id:"a",text:"Bark",isCorrect:false},{id:"b",text:"Roar",isCorrect:true},{id:"c",text:"Moo",isCorrect:false},{id:"d",text:"Chirp",isCorrect:false}], xpReward:10 },
+  { id:"sa7", type:"mcq", title:"Where do fish live?", options:[{id:"a",text:"In the sky",isCorrect:false},{id:"b",text:"In soil",isCorrect:false},{id:"c",text:"In water",isCorrect:true},{id:"d",text:"In trees",isCorrect:false}], xpReward:10 },
+  { id:"sa8", type:"roleplay", title:"Animal Mime!", prompt:"Each student picks an animal card secretly. They act out the animal — the way it moves, the sound it makes — and the class guesses what animal it is!", xpReward:20 },
+];
+
+export const SCIENCE_PLANTS: Question[] = [
+  { id:"sp1", type:"mcq", title:"Which part of a plant absorbs water from the soil?", options:[{id:"a",text:"Leaves",isCorrect:false},{id:"b",text:"Stem",isCorrect:false},{id:"c",text:"Roots",isCorrect:true},{id:"d",text:"Flower",isCorrect:false}], xpReward:10 },
+  { id:"sp2", type:"mcq", title:"What do leaves use to make food?", options:[{id:"a",text:"Rain",isCorrect:false},{id:"b",text:"Sunlight",isCorrect:true},{id:"c",text:"Darkness",isCorrect:false},{id:"d",text:"Wind",isCorrect:false}], xpReward:10 },
+  { id:"sp3", type:"mcq", title:"What carries water from roots to leaves?", options:[{id:"a",text:"Flower",isCorrect:false},{id:"b",text:"Fruit",isCorrect:false},{id:"c",text:"Stem",isCorrect:true},{id:"d",text:"Seed",isCorrect:false}], xpReward:10 },
+  { id:"sp4", type:"mcq", title:"Plants make their own food through what process?", options:[{id:"a",text:"Digestion",isCorrect:false},{id:"b",text:"Respiration",isCorrect:false},{id:"c",text:"Photosynthesis",isCorrect:true},{id:"d",text:"Evaporation",isCorrect:false}], xpReward:10 },
+  { id:"sp5", type:"mcq", title:"What does a seed need to start growing?", options:[{id:"a",text:"Light only",isCorrect:false},{id:"b",text:"Water, warmth and soil",isCorrect:true},{id:"c",text:"Cold temperature",isCorrect:false},{id:"d",text:"Nothing",isCorrect:false}], xpReward:10 },
+  { id:"sp6", type:"mcq", title:"Which part of the plant makes seeds?", options:[{id:"a",text:"Leaf",isCorrect:false},{id:"b",text:"Root",isCorrect:false},{id:"c",text:"Flower",isCorrect:true},{id:"d",text:"Bark",isCorrect:false}], xpReward:10 },
+  { id:"sp7", type:"story", title:"The Sunflower's Journey", body:"A sunflower seed fell to the ground. Rain watered it. The sun warmed the soil. Slowly, a root grew down, and a shoot grew up towards the light.", options:[{id:"a",text:"Seeds grow without any help",isCorrect:false},{id:"b",text:"Seeds need water, sun and soil to grow",isCorrect:true},{id:"c",text:"Sunflowers grow underground",isCorrect:false},{id:"d",text:"Rain destroys seeds",isCorrect:false}], xpReward:15 },
+  { id:"sp8", type:"mcq", title:"What gas do plants give out that we breathe?", options:[{id:"a",text:"Carbon dioxide",isCorrect:false},{id:"b",text:"Nitrogen",isCorrect:false},{id:"c",text:"Oxygen",isCorrect:true},{id:"d",text:"Hydrogen",isCorrect:false}], xpReward:10 },
+];
+
+export const SCIENCE_WEATHER: Question[] = [
+  { id:"sw1", type:"mcq", title:"What do we call water falling from clouds?", options:[{id:"a",text:"Fog",isCorrect:false},{id:"b",text:"Snow",isCorrect:false},{id:"c",text:"Rain",isCorrect:true},{id:"d",text:"Wind",isCorrect:false}], xpReward:10 },
+  { id:"sw2", type:"mcq", title:"What causes wind?", options:[{id:"a",text:"Clouds moving",isCorrect:false},{id:"b",text:"Moving air",isCorrect:true},{id:"c",text:"The sun spinning",isCorrect:false},{id:"d",text:"Rain falling",isCorrect:false}], xpReward:10 },
+  { id:"sw3", type:"mcq", title:"What tool measures temperature?", options:[{id:"a",text:"Ruler",isCorrect:false},{id:"b",text:"Thermometer",isCorrect:true},{id:"c",text:"Scale",isCorrect:false},{id:"d",text:"Compass",isCorrect:false}], xpReward:10 },
+  { id:"sw4", type:"mcq", title:"What comes after lightning?", options:[{id:"a",text:"Wind",isCorrect:false},{id:"b",text:"Snow",isCorrect:false},{id:"c",text:"Thunder",isCorrect:true},{id:"d",text:"Rainbow",isCorrect:false}], xpReward:10 },
+  { id:"sw5", type:"mcq", title:"How many colours are in a rainbow?", options:[{id:"a",text:"5",isCorrect:false},{id:"b",text:"6",isCorrect:false},{id:"c",text:"7",isCorrect:true},{id:"d",text:"8",isCorrect:false}], xpReward:10 },
+  { id:"sw6", type:"mcq", title:"Which season is the coldest?", options:[{id:"a",text:"Spring",isCorrect:false},{id:"b",text:"Summer",isCorrect:false},{id:"c",text:"Winter",isCorrect:true},{id:"d",text:"Autumn",isCorrect:false}], xpReward:10 },
+  { id:"sw7", type:"mcq", title:"What forms when water vapour cools down?", options:[{id:"a",text:"Ice",isCorrect:false},{id:"b",text:"Clouds",isCorrect:true},{id:"c",text:"Wind",isCorrect:false},{id:"d",text:"Soil",isCorrect:false}], xpReward:10 },
+  { id:"sw8", type:"mcq", title:"In which season do flowers bloom?", options:[{id:"a",text:"Winter",isCorrect:false},{id:"b",text:"Summer",isCorrect:false},{id:"c",text:"Spring",isCorrect:true},{id:"d",text:"Autumn",isCorrect:false}], xpReward:10 },
+];
+
+// ── SOCIAL / MORAL VALUES ─────────────────────────────────────────────────────
+
+export const SOCIAL_MORAL: Question[] = [
+  { id:"sm1", type:"mcq", title:"What should you do if your friend is feeling sad?", options:[{id:"a",text:"Ignore them",isCorrect:false},{id:"b",text:"Ask if they are okay and listen",isCorrect:true},{id:"c",text:"Laugh at them",isCorrect:false},{id:"d",text:"Walk away",isCorrect:false}], xpReward:10 },
+  { id:"sm2", type:"mcq", title:"Someone drops their books. What do you do?", options:[{id:"a",text:"Keep walking",isCorrect:false},{id:"b",text:"Laugh with friends",isCorrect:false},{id:"c",text:"Help them pick up the books",isCorrect:true},{id:"d",text:"Step over them",isCorrect:false}], xpReward:10 },
+  { id:"sm3", type:"story", title:"Ravi's Difficult Day", body:"Ravi came to class looking very quiet. He didn't eat his lunch. His friend Priya noticed but wasn't sure what to do.", options:[{id:"a",text:"Pretend not to notice",isCorrect:false},{id:"b",text:"Quietly ask Ravi if he wants to talk later",isCorrect:true},{id:"c",text:"Tell the whole class Ravi looks sad",isCorrect:false},{id:"d",text:"Tell a joke loudly to cheer everyone up",isCorrect:false}], xpReward:15 },
+  { id:"sm4", type:"mcq", title:"You hurt a friend's feelings. What is the best first step?", options:[{id:"a",text:"Hope they forget about it",isCorrect:false},{id:"b",text:"Blame someone else",isCorrect:false},{id:"c",text:"Say sorry and mean it",isCorrect:true},{id:"d",text:"Avoid them",isCorrect:false}], xpReward:10 },
+  { id:"sm5", type:"story", title:"The New Student", body:"Meena joined the class today. She sat alone at lunch and didn't talk to anyone.", options:[{id:"a",text:"Continue eating with your usual group",isCorrect:false},{id:"b",text:"Go sit with Meena and introduce yourself",isCorrect:true},{id:"c",text:"Whisper about her with your friends",isCorrect:false},{id:"d",text:"Wait for the teacher to introduce her",isCorrect:false}], xpReward:15 },
+  { id:"sm6", type:"mcq", title:"When you feel angry, what is the best thing to do first?", options:[{id:"a",text:"Shout at the nearest person",isCorrect:false},{id:"b",text:"Take a deep breath and count to 10",isCorrect:true},{id:"c",text:"Throw something",isCorrect:false},{id:"d",text:"Run away",isCorrect:false}], xpReward:10 },
+  { id:"sm7", type:"mcq", title:"What does it mean to be a good listener?", options:[{id:"a",text:"Waiting for your turn to talk",isCorrect:false},{id:"b",text:"Looking at your phone",isCorrect:false},{id:"c",text:"Giving full attention and not interrupting",isCorrect:true},{id:"d",text:"Nodding even if you don't understand",isCorrect:false}], xpReward:10 },
+  { id:"sm8", type:"roleplay", title:"Role Play: Saying Sorry", prompt:"Act this out: You accidentally bumped into a younger student and made them drop their lunch. They are about to cry. How do you handle this kindly?", xpReward:20 },
+  { id:"sm9", type:"roleplay", title:"Role Play: The Lost Book", prompt:"Your classmate lost their textbook before a test. They are very worried. Show us what you would do to help them.", xpReward:20 },
+  { id:"sm10", type:"mcq", title:"How do you feel when someone shares something with you?", options:[{id:"a",text:"Annoyed",isCorrect:false},{id:"b",text:"Happy and valued",isCorrect:true},{id:"c",text:"Confused",isCorrect:false},{id:"d",text:"Scared",isCorrect:false}], xpReward:10 },
+];
+
+export const SOCIAL_EMOTIONS: Question[] = [
+  { id:"se1", type:"mcq", title:"Which word describes feeling very happy?", options:[{id:"a",text:"Gloomy",isCorrect:false},{id:"b",text:"Angry",isCorrect:false},{id:"c",text:"Joyful",isCorrect:true},{id:"d",text:"Nervous",isCorrect:false}], xpReward:10 },
+  { id:"se2", type:"mcq", title:"How can you tell someone is feeling nervous?", options:[{id:"a",text:"They are laughing loudly",isCorrect:false},{id:"b",text:"They look calm and relaxed",isCorrect:false},{id:"c",text:"They are shaking or sweating",isCorrect:true},{id:"d",text:"They are running fast",isCorrect:false}], xpReward:10 },
+  { id:"se3", type:"mcq", title:"What should you do when a classmate is being bullied?", options:[{id:"a",text:"Join in",isCorrect:false},{id:"b",text:"Ignore it",isCorrect:false},{id:"c",text:"Tell a teacher and support the classmate",isCorrect:true},{id:"d",text:"Laugh",isCorrect:false}], xpReward:10 },
+  { id:"se4", type:"mcq", title:"What is empathy?", options:[{id:"a",text:"Feeling sorry for yourself",isCorrect:false},{id:"b",text:"Understanding how another person feels",isCorrect:true},{id:"c",text:"Being angry at someone",isCorrect:false},{id:"d",text:"Ignoring others",isCorrect:false}], xpReward:10 },
+  { id:"se5", type:"mcq", title:"If you feel overwhelmed, what is a good strategy?", options:[{id:"a",text:"Panic",isCorrect:false},{id:"b",text:"Take deep breaths and break the task into small steps",isCorrect:true},{id:"c",text:"Give up immediately",isCorrect:false},{id:"d",text:"Blame others",isCorrect:false}], xpReward:10 },
+  { id:"se6", type:"story", title:"The Broken Trophy", body:"Arjun won the class trophy but accidentally dropped it. It broke. His teacher saw his face fall and said: 'It's okay, what matters is that you earned it.'", options:[{id:"a",text:"Trophies are more important than effort",isCorrect:false},{id:"b",text:"The effort you put in matters more than the prize",isCorrect:true},{id:"c",text:"Arjun should be punished",isCorrect:false},{id:"d",text:"Arjun should hide the broken trophy",isCorrect:false}], xpReward:15 },
+  { id:"se7", type:"mcq", title:"What is the best way to make a new friend?", options:[{id:"a",text:"Wait for them to come to you",isCorrect:false},{id:"b",text:"Smile and introduce yourself",isCorrect:true},{id:"c",text:"Show off your things",isCorrect:false},{id:"d",text:"Ignore them until they notice you",isCorrect:false}], xpReward:10 },
+  { id:"se8", type:"mcq", title:"Gratitude means:", options:[{id:"a",text:"Taking things for granted",isCorrect:false},{id:"b",text:"Feeling thankful for what you have",isCorrect:true},{id:"c",text:"Wanting more than you have",isCorrect:false},{id:"d",text:"Comparing yourself to others",isCorrect:false}], xpReward:10 },
+];
+
+export const GENERAL_COLORS: Question[] = [
+  { id:"gc1", type:"mcq", title:"What colour do you get when you mix red and blue?", options:[{id:"a",text:"Green",isCorrect:false},{id:"b",text:"Orange",isCorrect:false},{id:"c",text:"Purple",isCorrect:true},{id:"d",text:"Yellow",isCorrect:false}], xpReward:10 },
+  { id:"gc2", type:"mcq", title:"What colour is the sky on a clear day?", options:[{id:"a",text:"Green",isCorrect:false},{id:"b",text:"Blue",isCorrect:true},{id:"c",text:"White",isCorrect:false},{id:"d",text:"Grey",isCorrect:false}], xpReward:10 },
+  { id:"gc3", type:"mcq", title:"What colour is grass?", options:[{id:"a",text:"Blue",isCorrect:false},{id:"b",text:"Green",isCorrect:true},{id:"c",text:"Brown",isCorrect:false},{id:"d",text:"Yellow",isCorrect:false}], xpReward:10 },
+  { id:"gc4", type:"mcq", title:"Red + Yellow = ?", options:[{id:"a",text:"Blue",isCorrect:false},{id:"b",text:"Green",isCorrect:false},{id:"c",text:"Orange",isCorrect:true},{id:"d",text:"Purple",isCorrect:false}], xpReward:10 },
+  { id:"gc5", type:"mcq", title:"How many colours are in a rainbow?", options:[{id:"a",text:"5",isCorrect:false},{id:"b",text:"6",isCorrect:false},{id:"c",text:"7",isCorrect:true},{id:"d",text:"9",isCorrect:false}], xpReward:10 },
+  { id:"gc6", type:"mcq", title:"What colour is the sun?", options:[{id:"a",text:"White",isCorrect:false},{id:"b",text:"Orange and yellow",isCorrect:true},{id:"c",text:"Red",isCorrect:false},{id:"d",text:"Blue",isCorrect:false}], xpReward:10 },
+  { id:"gc7", type:"mcq", title:"What colour is snow?", options:[{id:"a",text:"Grey",isCorrect:false},{id:"b",text:"Yellow",isCorrect:false},{id:"c",text:"White",isCorrect:true},{id:"d",text:"Blue",isCorrect:false}], xpReward:10 },
+  { id:"gc8", type:"mcq", title:"Blue + Yellow = ?", options:[{id:"a",text:"Red",isCorrect:false},{id:"b",text:"Orange",isCorrect:false},{id:"c",text:"Green",isCorrect:true},{id:"d",text:"Purple",isCorrect:false}], xpReward:10 },
+];
