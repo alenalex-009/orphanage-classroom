@@ -96,14 +96,14 @@ export default async function SessionSummaryPage({ params }: Props) {
               <Link key={s.id} href={`/students/${s.id}`}
                 className="flex items-center gap-4 p-4 rounded-2xl hover:bg-secondary transition-colors">
                 <span className="text-2xl w-8 text-center">{["🥇","🥈","🥉"][i] ?? `#${i+1}`}</span>
-                <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black text-white bg-gradient-to-br", avatar.gradient)}>
+                <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black text-gray-800 bg-gradient-to-br", avatar.gradient)}>
                   {getInitials(s.name)}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-black text-sm text-foreground">{s.name}</p>
                   <XPBar xp={xp} showLabel={false} size="sm" animated={false} />
                 </div>
-                <span className={cn("px-3 py-1 rounded-full text-xs font-black text-white bg-gradient-to-r", avatar.gradient)}>{avatar.emoji} {xp} XP</span>
+                <span className={cn("px-3 py-1 rounded-full text-xs font-black  text-yellow-400 bg-gradient-to-r", avatar.gradient)}>{avatar.emoji} {xp} XP</span>
                 <div className="flex gap-1">{s.achievements?.slice(0,3).map((a: any) => <span key={a.id} className="text-lg" title={a.label}>{a.icon}</span>)}</div>
               </Link>
             );
