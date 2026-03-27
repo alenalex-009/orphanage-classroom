@@ -1,13 +1,11 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { GameRoom } from "@/components/game-room";
-import { DEFAULT_QUESTIONS } from "@/lib/question-bank";
+import { getQuestionsForTopic } from "@/lib/question-bank";
 
-interface Props {
-  params: Promise<{ id: string }>;
-}
+interface Props { params: Promise<{ id: string }> }
 
-export default async function SessionDetailPage({ params }: Props) {
+export default async function SessionGamePage({ params }: Props) {
   const { id } = await params;
   const session = await prisma.session.findUnique({
     where: { id },
@@ -33,6 +31,9 @@ export default async function SessionDetailPage({ params }: Props) {
 
   if (!session) notFound();
 
+  // THE FIX: Generate questions based on the actual session topic
+  const questions = getQuestionsForTopic(session.topic);
+
   return (
     <GameRoom
       session={{
@@ -44,18 +45,18 @@ export default async function SessionDetailPage({ params }: Props) {
         classId: session.classId,
         className: session.class.name,
       }}
-      students={session.class.students.map((s:any) => ({
+      students={session.class.students.map((s: any) => ({
         id: s.id,
         name: s.name,
         reward: s.reward,
         achievements: s.achievements,
       }))}
-      teams={session.teams.map((t:any) => ({
+      teams={session.teams.map((t: any) => ({
         id: t.id,
         name: t.name,
         color: t.color,
         xp: t.xp,
-        members: t.members.map((m:any) => ({
+        members: t.members.map((m: any) => ({
           studentId: m.studentId,
           student: {
             id: m.student.id,
@@ -65,7 +66,7 @@ export default async function SessionDetailPage({ params }: Props) {
           },
         })),
       }))}
-      questions={DEFAULT_QUESTIONS}
+      questions={questions}
     />
   );
 }

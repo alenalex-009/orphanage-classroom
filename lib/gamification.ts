@@ -264,3 +264,106 @@ export async function triggerRolePlayEvaluated(
   }
 }
 
+
+// ─── PHASE 2 GAMIFICATION ─────────────────────────────────────────────────────
+
+const COMBO_THRESHOLDS = [3, 5, 10];
+const COMBO_MULTIPLIERS = [1.25, 1.5, 2.0];
+
+/**
+ * Get combo multiplier based on consecutive correct answers in a session
+ */
+export function getComboMultiplier(streak: number): { multiplier: number; label: string } {
+  for (let i = COMBO_THRESHOLDS.length - 1; i >= 0; i--) {
+    if (streak >= COMBO_THRESHOLDS[i]) {
+      return { multiplier: COMBO_MULTIPLIERS[i], label: `${COMBO_THRESHOLDS[i]}x Combo!` };
+    }
+  }
+  return { multiplier: 1, label: "" };
+}
+
+/**
+ * Daily challenge — bonus XP for first activity of the day
+ */
+export async function triggerDailyFirst(studentId: string): Promise<void> {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayEvents = await prisma.activityEvent.count({
+      where: { studentIds: { has: studentId }, createdAt: { gte: today } },
+    });
+    if (todayEvents === 1) {
+      // First event today — bonus
+      await addXP(studentId, 5);
+      console.log(`[Gamification] Daily first bonus for ${studentId}`);
+    }
+  } catch (e) {
+    console.error("[Gamification] triggerDailyFirst failed:", e);
+  }
+}
+
+/**
+ * Award bonus XP for a perfect session (participated in every activity)
+ */
+export async function triggerPerfectSession(
+  studentId: string,
+  sessionId: string,
+  classId: string
+): Promise<void> {
+  try {
+    const sessionEvents = await prisma.activityEvent.count({ where: { sessionId } });
+    const studentEvents = await prisma.activityEvent.count({
+      where: { sessionId, studentIds: { has: studentId } },
+    });
+    if (sessionEvents > 0 && studentEvents === sessionEvents) {
+      await addXP(studentId, 25);
+      await grantAchievement(studentId, "active_student");
+    }
+  } catch (e) {
+    console.error("[Gamification] triggerPerfectSession failed:", e);
+  }
+}
+
+/**
+ * Get class XP leaderboard for current session
+ */
+export async function getSessionLeaderboard(
+  sessionId: string
+): Promise<{ studentId: string; name: string; xpEarned: number }[]> {
+  try {
+    const events = await prisma.activityEvent.findMany({ where: { sessionId } });
+    const xpMap: Record<string, number> = {};
+    for (const event of events) {
+      const total = event.xpAwarded + event.bonusXP;
+      for (const sid of event.studentIds) {
+        xpMap[sid] = (xpMap[sid] ?? 0) + total;
+      }
+    }
+    const studentIds = Object.keys(xpMap);
+    if (!studentIds.length) return [];
+    const students = await prisma.student.findMany({
+      where: { id: { in: studentIds } },
+      select: { id: true, name: true },
+    });
+    return students
+      .map((s: any) => ({ studentId: s.id, name: s.name, xpEarned: xpMap[s.id] ?? 0 }))
+      .sort((a: any, b: any) => b.xpEarned - a.xpEarned);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * XP constants exposed for UI display
+ */
+export const XP_DISPLAY = {
+  ATTENDANCE: 10,
+  WHOLE_CLASS: 10,
+  SELECTED_BASE: 15,
+  STREAK_BONUS: 5,
+  ROLE_PLAY_BASE: 20,
+  PERFORMANCE_BONUS: 10,
+  TEAM_BONUS: 5,
+  PERFECT_SESSION: 25,
+  DAILY_FIRST: 5,
+};
