@@ -114,14 +114,98 @@ export const STORIES: Story[] = [
   },
 ];
 
+// story access functions defined below after new stories
+
+// ── 4 NEW STORIES ─────────────────────────────────────────────────────────────
+
+const NEW_STORIES: Story[] = [
+  {
+    id: "the-river-and-the-stone",
+    topicKey: "emotions",
+    title: "The River and the Stone",
+    coverEmoji: "🪨",
+    subject: "Life Skills",
+    gradeLevel: "Grade 3–6",
+    totalXP: 60,
+    moral: "Patience and persistence can overcome any obstacle.",
+    pages: [
+      { pageNum:1, emoji:"🌊", text:"Deep in a mountain valley, a strong river flowed. In its path sat a massive boulder that had fallen long ago, blocking the water's way." },
+      { pageNum:2, emoji:"💭", text:"The water was frustrated. It crashed against the rock day after day — splash after splash — but the boulder never moved.", question:{ text:"What was the river feeling?", options:[{id:"a",text:"Happy and peaceful",isCorrect:false},{id:"b",text:"Frustrated because something blocked its way",isCorrect:true},{id:"c",text:"Tired and ready to stop",isCorrect:false},{id:"d",text:"Angry at the mountain",isCorrect:false}] } },
+      { pageNum:3, emoji:"🔄", text:"But instead of giving up, the river tried something different. It didn't crash — it flowed patiently around the edges of the rock, finding the tiniest cracks." },
+      { pageNum:4, emoji:"✨", text:"Over months, the water slowly carved those tiny cracks wider. The rock started to smooth. What once seemed impossible was, little by little, changing.", question:{ text:"What did the river do instead of giving up?", options:[{id:"a",text:"It found another valley",isCorrect:false},{id:"b",text:"It waited for rain to wash the rock away",isCorrect:false},{id:"c",text:"It patiently worked around the rock, finding small cracks",isCorrect:true},{id:"d",text:"It asked for help from other rivers",isCorrect:false}] } },
+      { pageNum:5, emoji:"🏆", text:"One day, the boulder split cleanly in two. The river flowed freely through the gap it had created — not through force, but through patience and persistence." },
+      { pageNum:6, emoji:"💪", text:"The valley animals watched in wonder. A small fish said: 'You were never stopped. You just had to find the right way.' The river smiled as it flowed onwards.", question:{ text:"What is the lesson from the river and the stone?", options:[{id:"a",text:"Water is stronger than rock",isCorrect:false},{id:"b",text:"Patience and persistence can overcome any obstacle",isCorrect:true},{id:"c",text:"You should always find an easier path",isCorrect:false},{id:"d",text:"Boulders eventually move on their own",isCorrect:false}] } },
+    ],
+  },
+  {
+    id: "the-two-brothers",
+    topicKey: "moral_values",
+    title: "The Two Brothers and the Mango Tree",
+    coverEmoji: "🥭",
+    subject: "Moral Values",
+    gradeLevel: "Grade 2–5",
+    totalXP: 55,
+    moral: "Greed destroys what love has built. Sharing brings more than taking.",
+    pages: [
+      { pageNum:1, emoji:"🌳", text:"Two brothers, Raju and Mohan, shared a small farm with a magnificent mango tree. Every year it gave them enough fruit to sell and eat for months." },
+      { pageNum:2, emoji:"😤", text:"One dry summer, Raju became greedy. 'I do more work,' he told himself. 'I deserve more mangoes.' He began secretly picking fruit at night before Mohan woke up.", question:{ text:"Why was Raju's thinking a problem?", options:[{id:"a",text:"He was wrong about working more",isCorrect:false},{id:"b",text:"Taking more than your fair share secretly is dishonest and greedy",isCorrect:true},{id:"c",text:"Mangoes are not valuable enough to share",isCorrect:false},{id:"d",text:"Mohan was also being greedy",isCorrect:false}] } },
+      { pageNum:3, emoji:"🌱", text:"Mohan noticed the tree was being stripped. He said nothing but planted extra seeds and watered the farm in the evenings — tending to what they both shared." },
+      { pageNum:4, emoji:"🌧️", text:"That autumn, a heavy storm damaged half the farm. Raju's secret mango stockpile had already rotted — stored too quickly without care. He had nothing left.", question:{ text:"What happened to Raju's greedy plan?", options:[{id:"a",text:"He became very rich",isCorrect:false},{id:"b",text:"The stolen mangoes rotted and he was left with nothing",isCorrect:true},{id:"c",text:"He shared with Mohan after all",isCorrect:false},{id:"d",text:"The storm didn't affect his mangoes",isCorrect:false}] } },
+      { pageNum:5, emoji:"🤝", text:"Mohan's new plants survived the storm. He walked to Raju: 'I know what you did. But you are still my brother. Take half of mine.' Raju felt deep shame — and deep gratitude." },
+      { pageNum:6, emoji:"🌅", text:"From that day, the brothers worked together, shared everything equally, and the tree grew larger than it ever had. They called it 'the giving tree' — because giving is what made it grow.", question:{ text:"What made the mango tree grow larger than ever?", options:[{id:"a",text:"Better soil",isCorrect:false},{id:"b",text:"The storm brought more rain",isCorrect:false},{id:"c",text:"The brothers working together and sharing equally",isCorrect:true},{id:"d",text:"Planting more trees nearby",isCorrect:false}] } },
+    ],
+  },
+  {
+    id: "the-stars-and-the-shepherd",
+    topicKey: "history",
+    title: "The Stars and the Shepherd Boy",
+    coverEmoji: "⭐",
+    subject: "Science",
+    gradeLevel: "Grade 3–6",
+    totalXP: 65,
+    moral: "Curiosity and observation are the seeds of all great discovery.",
+    pages: [
+      { pageNum:1, emoji:"🌙", text:"A shepherd boy named Dhruv spent every night watching the sky. While others slept, he lay on the hillside and mapped the stars in a notebook his teacher had given him." },
+      { pageNum:2, emoji:"🔭", text:"He noticed something strange: most stars moved slowly across the sky each night — but one star always stayed perfectly still, directly north. He called it his 'anchor star'.", question:{ text:"Why was Dhruv's observation important?", options:[{id:"a",text:"Stars are only beautiful",isCorrect:false},{id:"b",text:"He discovered that one star stays fixed — which could be used for navigation",isCorrect:true},{id:"c",text:"He was counting how many stars there are",isCorrect:false},{id:"d",text:"He was trying to find a new planet",isCorrect:false}] } },
+      { pageNum:3, emoji:"🌍", text:"Dhruv shared his discovery with travellers passing through the village. They tested it — and they could indeed use the anchor star to find north, even without a map." },
+      { pageNum:4, emoji:"📖", text:"A visiting scholar heard about the boy's discovery and came to meet him. 'How did you figure this out?' he asked. Dhruv smiled: 'I just paid attention. Every night. For two years.'", question:{ text:"What did Dhruv use to make his discovery?", options:[{id:"a",text:"An expensive telescope",isCorrect:false},{id:"b",text:"Instructions from a book",isCorrect:false},{id:"c",text:"Patient observation over two years",isCorrect:true},{id:"d",text:"Help from other scientists",isCorrect:false}] } },
+      { pageNum:5, emoji:"🧭", text:"The anchor star — what we today call Polaris or the North Star — has guided sailors, explorers, and travellers for thousands of years. All because someone looked up and paid attention." },
+      { pageNum:6, emoji:"💫", text:"Dhruv became a great astronomer. On his old notebook's cover he wrote: 'The sky is a classroom with no walls and no end — and it teaches anyone who is curious enough to look.'", question:{ text:"What is the main lesson of Dhruv's story?", options:[{id:"a",text:"You need expensive tools to make discoveries",isCorrect:false},{id:"b",text:"Only scholars can understand the sky",isCorrect:false},{id:"c",text:"Curiosity and patient observation are the roots of all great discovery",isCorrect:true},{id:"d",text:"The North Star is the brightest star in the sky",isCorrect:false}] } },
+    ],
+  },
+  {
+    id: "the-girl-who-fixed-the-bridge",
+    topicKey: "cs",
+    title: "The Girl Who Fixed the Bridge",
+    coverEmoji: "🌉",
+    subject: "Life Skills",
+    gradeLevel: "Grade 4–7",
+    totalXP: 70,
+    moral: "Break any big problem into small steps and you can solve it.",
+    pages: [
+      { pageNum:1, emoji:"🏘️", text:"The village of Sundarpur had a broken bridge. Without it, children couldn't cross the river to reach school. Adults couldn't get goods to the market. The whole village was stuck." },
+      { pageNum:2, emoji:"😰", text:"The elders held meetings but always ended in arguments about how to fix it. 'It's too big a problem!' said one. 'We don't have the right tools!' said another. Nothing was decided.", question:{ text:"Why was the village stuck?", options:[{id:"a",text:"They had no money",isCorrect:false},{id:"b",text:"People argued and never broke the problem into steps they could actually solve",isCorrect:true},{id:"c",text:"They didn't want to fix the bridge",isCorrect:false},{id:"d",text:"The river was too fast to bridge",isCorrect:false}] } },
+      { pageNum:3, emoji:"👧", text:"A twelve-year-old girl named Preethi grabbed a notebook. She walked to the bridge and wrote down every specific problem she could see: 'Three planks missing. Two ropes frayed. One post tilting.'" },
+      { pageNum:4, emoji:"📋", text:"Then she made a list of who in the village could solve each small problem: the carpenter, the farmer with extra rope, the mason with cement. She visited each person.", question:{ text:"What was Preethi's approach to the problem?", options:[{id:"a",text:"She asked for money from the government",isCorrect:false},{id:"b",text:"She broke the big problem into specific small problems and matched each to someone who could solve it",isCorrect:true},{id:"c",text:"She built the bridge alone",isCorrect:false},{id:"d",text:"She convinced everyone to move to another village",isCorrect:false}] } },
+      { pageNum:5, emoji:"🔨", text:"Over three weekends, each person fixed their part. The carpenter replaced the planks. The farmer brought rope. The mason reset the post. Preethi coordinated every step." },
+      { pageNum:6, emoji:"🎉", text:"On the day the bridge opened, the village gathered to celebrate. An elder asked: 'How did you solve what we couldn't?' Preethi held up her notebook: 'I stopped thinking about the whole bridge. I just fixed one plank at a time.'", question:{ text:"What is the key lesson from Preethi's story?", options:[{id:"a",text:"Children are smarter than adults",isCorrect:false},{id:"b",text:"Any big problem can be solved by breaking it into small steps",isCorrect:true},{id:"c",text:"You need special tools to build bridges",isCorrect:false},{id:"d",text:"Working alone is better than working in groups",isCorrect:false}] } },
+    ],
+  },
+];
+
+// Merge into the existing STORIES array export
+// Note: STORIES is already exported above; we re-export getAllStories with combined data
+
+const ALL_STORIES_COMBINED = [...STORIES, ...NEW_STORIES];
+
+export function getAllStories(): Story[] {
+  return ALL_STORIES_COMBINED;
+}
+
 export function getStoryById(id: string): Story | null {
-  return STORIES.find(s => s.id === id) ?? null;
+  return ALL_STORIES_COMBINED.find(s => s.id === id) ?? null;
 }
 
 export function getStoriesByTopic(topicKey: string): Story[] {
-  return STORIES.filter(s => s.topicKey === topicKey);
-}
-
-export function getAllStories(): Story[] {
-  return STORIES;
+  return ALL_STORIES_COMBINED.filter(s => s.topicKey === topicKey);
 }

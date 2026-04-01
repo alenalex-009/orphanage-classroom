@@ -4,7 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { ParticipationForm } from "@/components/participation-form";
 import { BookOpen, CheckCircle2, Users, Gamepad2, Zap, Trophy, ArrowLeft, Play } from "lucide-react";
 import Link from "next/link";
-import { getLevelInfo } from "@/components/xp-bar";
+import { getLevelInfo } from "@/lib/avatars";
 import { cn } from "@/lib/utils";
 
 interface Props { params: Promise<{ id: string }> }

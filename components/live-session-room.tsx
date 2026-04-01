@@ -6,7 +6,7 @@ import { cn, getInitials } from "@/lib/utils";
 import { awardWholeClassXP, awardSelectedStudentsXP, evaluateRolePlay } from "@/actions/gamification";
 import { createTeams } from "@/actions/teams";
 import { completeSession } from "@/actions/session";
-import { getLevelInfo } from "@/components/xp-bar";
+import { getLevelInfo } from "@/lib/avatars";
 import { Users, Zap, Theater, Trophy, CheckCircle2, Star, Loader2, ArrowLeft, Hash, Gamepad2, Crown, Flame, Target, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -107,7 +107,7 @@ function StudentPicker({ students, selected, onToggle, teams, label }: { student
               className={cn("flex flex-col items-center gap-1.5 p-3 rounded-2xl border-2 transition-all active:scale-95",
                 isSel ? "border-violet-400 bg-violet-50" : "border-transparent bg-secondary hover:border-violet-200")}>
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm",
-                isSel ? `bg-gradient-to-br ${sAvatar.gradient} ` : "bg-muted text-muted-foreground")}>
+                isSel ? `bg-gradient-to-br ${sAvatar.gradient} text-white` : "bg-muted text-muted-foreground")}>
                 {getInitials(s.name)}
               </div>
               <p className="text-xs font-bold text-center leading-tight truncate w-full">{s.name.split(" ")[0]}</p>
@@ -132,7 +132,7 @@ function StudentLiveCard({ student, rank }: { student: Student; rank: number }) 
     <div className={cn("flex flex-col items-center gap-2 p-3 rounded-2xl border-2 transition-all",
       rank === 1 ? "border-amber-300 bg-amber-50" : rank === 2 ? "border-slate-300 bg-slate-50" : rank === 3 ? "border-orange-300 bg-orange-50" : "border-transparent bg-secondary")}>
       <div className="relative">
-        <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black bg-gradient-to-br", avatar.gradient)}>
+        <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black text-white bg-gradient-to-br", avatar.gradient)}>
           {getInitials(student.name)}
         </div>
         {rank <= 3 && <span className="absolute -top-1.5 -right-1.5 text-base">{medals[rank-1]}</span>}

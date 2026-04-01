@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { getLevelInfo } from "@/lib/avatars";
 
-export { getLevelInfo } from "@/lib/avatars";
+//export { getLevelInfo } from "@/lib/avatars";
 
 interface XPBarProps {
   xp: number;
@@ -75,5 +75,3 @@ export function AvatarDisplay({ xp, size = "md" }: { xp: number; size?: "sm" | "
     </div>
   );
 }
-
-

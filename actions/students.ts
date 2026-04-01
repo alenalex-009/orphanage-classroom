@@ -87,11 +87,16 @@ export async function getAllStudents(classId?: string) {
   return prisma.student.findMany({
     where: classId ? { classId } : undefined,
     include: {
-      class: true,
-      reward: true,
-      achievements: true,
-      _count: { select: { attendance: true, participation: true } },
-    },
+  class: true,
+  reward: true,
+  achievements: true,
+  attendance: {
+    select: { status: true }   // only what you need
+  },
+  participation: {
+    select: { score: true }    // only what you need
+  }
+},
     orderBy: { name: "asc" },
   });
 }

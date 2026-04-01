@@ -6,7 +6,7 @@ import { awardWholeClassXP, awardSelectedStudentsXP, evaluateRolePlay } from "@/
 import { completeSession } from "@/actions/session";
 import { createTeams } from "@/actions/teams";
 import { useRouter } from "next/navigation";
-import { getLevelInfo } from "@/components/xp-bar";
+import { getLevelInfo } from "@/lib/avatars";
 import type { Question, GameStudent, GameTeam, AnswerMode } from "@/lib/game-types";
 import { ChevronRight, ChevronLeft, SkipForward, X, Users, CheckCircle2, Zap, Theater, Trophy, Star, ArrowLeft, Crown, Flame } from "lucide-react";
 import Link from "next/link";
